@@ -27,7 +27,11 @@
     </section>
 
     <div id="main-layout" class="view hidden">
-        <nav class="sidebar">
+        
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <nav class="sidebar" id="sidebar">
             <div>
                 <h2>BALAMYÁ</h2>
                 <div class="user-mini">
@@ -82,28 +86,28 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>09:00 AM</td>
-                                <td>Jaguar (H)</td>
-                                <td>3kg Pollo, Supl. Calcio</td>
-                                <td><span class="tag pending">Pendiente</span></td>
+                                <td data-label="Hora">09:00 AM</td>
+                                <td data-label="Especie">Jaguar (H)</td>
+                                <td data-label="Dieta">3kg Pollo, Supl. Calcio</td>
+                                <td data-label="Estado"><span class="tag pending">Pendiente</span></td>
                             </tr>
                             <tr>
-                                <td>09:15 AM</td>
-                                <td>Tapir</td>
-                                <td>Frutas, Hojas, Verduras</td>
-                                <td><span class="tag pending">Pendiente</span></td>
+                                <td data-label="Hora">09:15 AM</td>
+                                <td data-label="Especie">Tapir</td>
+                                <td data-label="Dieta">Frutas, Hojas, Verduras</td>
+                                <td data-label="Estado"><span class="tag pending">Pendiente</span></td>
                             </tr>
                             <tr>
-                                <td>09:30 AM</td>
-                                <td>Guacamaya Roja</td>
-                                <td>Semillas, Frutas secas</td>
-                                <td><span class="tag warning">Sin Stock</span></td>
+                                <td data-label="Hora">09:30 AM</td>
+                                <td data-label="Especie">Guacamaya Roja</td>
+                                <td data-label="Dieta">Semillas, Frutas secas</td>
+                                <td data-label="Estado"><span class="tag warning">Sin Stock</span></td>
                             </tr>
                             <tr>
-                                <td>10:00 AM</td>
-                                <td>Cocodrilo Moreletii</td>
-                                <td>Pescado, Pollo</td>
-                                <td><span class="tag pending">Pendiente</span></td>
+                                <td data-label="Hora">10:00 AM</td>
+                                <td data-label="Especie">Cocodrilo Moreletii</td>
+                                <td data-label="Dieta">Pescado, Pollo</td>
+                                <td data-label="Estado"><span class="tag pending">Pendiente</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -136,11 +140,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>#Z001</td>
-                                <td>León Africano</td>
-                                <td>Simba (M)</td>
-                                <td>Felinos Norte</td>
-                                <td>
+                                <td data-label="ID">#Z001</td>
+                                <td data-label="Especie">León Africano</td>
+                                <td data-label="Nombre">Simba (M)</td>
+                                <td data-label="Recinto">Felinos Norte</td>
+                                <td data-label="Acciones">
                                     <div class="row-actions">
                                         <button class="btn-action edit">✏️ Editar</button>
                                         <button class="btn-action delete">🗑️ Eliminar</button>
@@ -148,11 +152,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>#Z002</td>
-                                <td>Jaguar</td>
-                                <td>Balam (H)</td>
-                                <td>Selva Húmeda</td>
-                                <td>
+                                <td data-label="ID">#Z002</td>
+                                <td data-label="Especie">Jaguar</td>
+                                <td data-label="Nombre">Balam (H)</td>
+                                <td data-label="Recinto">Selva Húmeda</td>
+                                <td data-label="Acciones">
                                     <div class="row-actions">
                                         <button class="btn-action edit">✏️ Editar</button>
                                         <button class="btn-action delete">🗑️ Eliminar</button>
@@ -160,11 +164,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>#Z003</td>
-                                <td>Tapir</td>
-                                <td>N/A (Cría)</td>
-                                <td>Zona Mamíferos</td>
-                                <td>
+                                <td data-label="ID">#Z003</td>
+                                <td data-label="Especie">Tapir</td>
+                                <td data-label="Nombre">N/A (Cría)</td>
+                                <td data-label="Recinto">Zona Mamíferos</td>
+                                <td data-label="Acciones">
                                     <div class="row-actions">
                                         <button class="btn-action create">➕ Crear</button>
                                         <button class="btn-action delete">🗑️ Eliminar</button>
@@ -172,11 +176,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>#Z004</td>
-                                <td>Guacamaya Roja</td>
-                                <td>Lote 4 Aves</td>
-                                <td>Aviario 2</td>
-                                <td>
+                                <td data-label="ID">#Z004</td>
+                                <td data-label="Especie">Guacamaya Roja</td>
+                                <td data-label="Nombre">Lote 4 Aves</td>
+                                <td data-label="Recinto">Aviario 2</td>
+                                <td data-label="Acciones">
                                     <div class="row-actions">
                                         <button class="btn-action edit">✏️ Editar</button>
                                         <button class="btn-action delete">🗑️ Eliminar</button>
@@ -209,51 +213,51 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>08:00 AM</td>
-                                <td>León Africano</td>
-                                <td>Dieta Proteica A (7kg Res)</td>
-                                <td>
+                                <td data-label="Hora">08:00 AM</td>
+                                <td data-label="Especie">León Africano</td>
+                                <td data-label="Dieta">Dieta Proteica A (7kg Res)</td>
+                                <td data-label="Estado">
                                     <div class="status-row">
                                         <span class="tag success" style="opacity: 0.7;">Enviado</span>
                                         <span class="tag success">✅ Preparado</span>
                                     </div>
                                 </td>
-                                <td><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
+                                <td data-label="Acción"><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
                             </tr>
                             <tr>
-                                <td>08:30 AM</td>
-                                <td>Puma Concolor</td>
-                                <td>Dieta Mixta (Carne/Vísceras)</td>
-                                <td>
+                                <td data-label="Hora">08:30 AM</td>
+                                <td data-label="Especie">Puma Concolor</td>
+                                <td data-label="Dieta">Dieta Mixta (Carne/Vísceras)</td>
+                                <td data-label="Estado">
                                     <div class="status-row">
                                         <span class="tag success" style="opacity: 0.7;">Enviado</span>
                                         <span class="tag" style="background: #bfdbfe; color: #1e40af;">⏳ En Preparación</span>
                                     </div>
                                 </td>
-                                <td><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
+                                <td data-label="Acción"><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
                             </tr>
                             <tr>
-                                <td>09:00 AM</td>
-                                <td>Jaguar</td>
-                                <td>Dieta B (Pollo/Suplemento)</td>
-                                <td>
+                                <td data-label="Hora">09:00 AM</td>
+                                <td data-label="Especie">Jaguar</td>
+                                <td data-label="Dieta">Dieta B (Pollo/Suplemento)</td>
+                                <td data-label="Estado">
                                     <div class="status-row">
                                         <span class="tag success" style="opacity: 0.7;">Enviado</span>
                                         <span class="tag warning">⚠️ Sin Stock</span>
                                     </div>
                                 </td>
-                                <td><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
+                                <td data-label="Acción"><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
                             </tr>
                             <tr>
-                                <td>10:00 AM</td>
-                                <td>Cebra</td>
-                                <td>Heno y Forraje (15kg)</td>
-                                <td>
+                                <td data-label="Hora">10:00 AM</td>
+                                <td data-label="Especie">Cebra</td>
+                                <td data-label="Dieta">Heno y Forraje (15kg)</td>
+                                <td data-label="Estado">
                                     <div class="status-row">
                                         <span class="tag pending">Pendiente de Envío</span>
                                     </div>
                                 </td>
-                                <td><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
+                                <td data-label="Acción"><button class="btn-action print-row">🖨️ Imprimir dieta</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -310,7 +314,6 @@
         <div class="cards-grid">
             <div class="kitchen-card">
                 <p class="diet-timestamp">📅 28/11/2025, 08:00 AM</p>
-                
                 <div class="card-header">
                     <h3>León Africano</h3>
                     <span class="emoji">🦁</span>
@@ -322,19 +325,13 @@
                 <div class="actions">
                     <button class="btn-large prep" onclick="marcarPreparacion(this)">Marcar en Preparación</button>
                     <button class="btn-large success" onclick="confirmarPedido(this)">Confirmar</button>
-                    
                     <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">↩ Cancelar y corregir</button>
-                    
-                    <button class="btn-large danger" 
-                        onclick="abrirModalStock('León Africano', ['Carne de Res', 'Pollo Entero'])">
-                        Sin Stock
-                    </button>
+                    <button class="btn-large danger" onclick="abrirModalStock('León Africano', ['Carne de Res', 'Pollo Entero'])">Sin Stock</button>
                 </div>
             </div>
 
             <div class="kitchen-card">
                 <p class="diet-timestamp">📅 28/11/2025, 08:30 AM</p>
-
                 <div class="card-header">
                     <h3>Jaguar</h3>
                     <span class="emoji">🐆</span>
@@ -346,13 +343,26 @@
                 <div class="actions">
                     <button class="btn-large prep" onclick="marcarPreparacion(this)">Marcar en Preparación</button>
                     <button class="btn-large success" onclick="confirmarPedido(this)">Confirmar</button>
-
                     <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">↩ Cancelar y corregir</button>
-
-                    <button class="btn-large danger" 
-                        onclick="abrirModalStock('Jaguar', ['Pollo', 'Suplemento Calcio'])">
-                        Sin Stock
-                    </button>
+                    <button class="btn-large danger" onclick="abrirModalStock('Jaguar', ['Pollo', 'Suplemento Calcio'])">Sin Stock</button>
+                </div>
+            </div>
+            
+            <div class="kitchen-card">
+                <p class="diet-timestamp">📅 28/11/2025, 09:00 AM</p>
+                <div class="card-header">
+                    <h3>Tapir</h3>
+                    <span class="emoji">🐗</span>
+                </div>
+                <div class="ingredients-list">
+                    <p>🍎 2kg Manzanas</p>
+                    <p>🥕 1kg Zanahorias</p>
+                </div>
+                <div class="actions">
+                    <button class="btn-large prep" onclick="marcarPreparacion(this)">Marcar en Preparación</button>
+                    <button class="btn-large success" onclick="confirmarPedido(this)">Confirmar</button>
+                    <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">↩ Cancelar y corregir</button>
+                    <button class="btn-large danger" onclick="abrirModalStock('Tapir', ['Manzanas', 'Zanahorias'])">Sin Stock</button>
                 </div>
             </div>
         </div>

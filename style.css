@@ -1,4 +1,6 @@
-/* Estilos Generales */
+/* =========================================
+   1. TU CÓDIGO ORIGINAL (BASE)
+   ========================================= */
 body { font-family: 'Inter', sans-serif; margin: 0; background-color: #f4f7f6; color: #333; height: 100vh; }
 .hidden { display: none !important; }
 .active { display: flex; }
@@ -10,8 +12,10 @@ input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; borde
 button { width: 100%; padding: 12px; background: #2E7D32; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem; margin-top: 10px; }
 
 /* Layout */
-#main-layout { display: flex; height: 100vh; width: 100%; }
-.sidebar { width: 260px; background: #1e293b; color: white; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; }
+#main-layout { display: flex; height: 100vh; width: 100%; position: relative; }
+
+/* Sidebar */
+.sidebar { width: 260px; background: #1e293b; color: white; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; transition: transform 0.3s ease; }
 .sidebar h2 { margin-bottom: 20px; text-align: center; color: #4ade80; }
 .sidebar ul { list-style: none; padding: 0; }
 .sidebar li { padding: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
@@ -34,7 +38,7 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 .btn-print { background: #ef4444 !important; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 0 !important; }
 .btn-print:hover { background: #dc2626 !important; }
 
-/* BOTÓN CREAR NUEVO (VERDE SOLIDO) */
+/* BOTÓN CREAR NUEVO */
 .create-new { background: #2E7D32 !important; color: white !important; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
 .create-new:hover { background: #15803d !important; }
 
@@ -55,14 +59,13 @@ th { background: #f8fafc; color: #64748b; text-transform: uppercase; font-size: 
 .tag.warning { background: #fef3c7; color: #92400e; }
 .tag.pending { background: #e2e8f0; color: #475569; }
 
-/* CONTENEDOR DE ESTADOS CON ESPACIO */
+/* Status Row */
 .status-row { display: flex; gap: 10px; align-items: center; }
 
 .row-actions { display: flex; gap: 8px; }
 .btn-action { padding: 8px 15px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; margin: 0 !important; }
 .btn-action.edit { background: #e0f2fe; color: #0369a1; }
 .btn-action.create { background: #dcfce7; color: #15803d; }
-/* ESTILO ROJO PARA ELIMINAR E IMPRIMIR */
 .btn-action.delete, .btn-action.print-row { background: #ef4444; color: white; }
 .btn-action.delete:hover, .btn-action.print-row:hover { background: #dc2626; }
 
@@ -78,7 +81,7 @@ hr { border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0; }
 .detail-item p { margin: 0; font-weight: 600; color: #334155; }
 .btn-small { padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; margin: 0; }
 
-/* Cocina & Modal */
+/* COCINA */
 .kitchen-mode { background: #e2e8f0; padding: 30px; height: 100vh; box-sizing: border-box; display: block; overflow-y: auto; }
 .kitchen-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
 .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
@@ -87,11 +90,15 @@ hr { border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0; }
 
 .actions { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
 .btn-large { width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; margin: 0; }
+
+/* --- COLORES DE BOTONES DE COCINA --- */
 .btn-large.success { background: #2E7D32; }
-.btn-large.danger { background: #ef4444; }
 .btn-large.prep { background: #3b82f6; }
 
-/* CAMBIO FINAL: BOTÓN CANCELAR ROJO CON LETRAS BLANCAS */
+/* CAMBIO: SIN STOCK AHORA ES NARANJA */
+.btn-large.danger { background: #f97316; } 
+.btn-large.danger:hover { background: #ea580c; }
+
 .btn-large.undo { background: #ef4444; color: white; border: none; }
 .btn-large.undo:hover { background: #dc2626; }
 
@@ -105,7 +112,132 @@ hr { border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0; }
 .full-width-input { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; margin: 0; }
 textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 0; font-family: inherit; }
 .modal-actions { display: flex; gap: 15px; justify-content: flex-end; margin-top: 20px; }
-.btn-cancel { background: #e2e8f0; color: #334155; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
-.btn-send { background: #ef4444; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
+
+
+/* =========================================
+   2. MODIFICACIONES Y NUEVOS ESTILOS (RESPONSIVE)
+   ========================================= */
+
+/* Colores del Modal Corregidos */
+.btn-cancel { background: #ef4444; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
+.btn-send { background: #3b82f6; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
+
+/* Elementos nuevos para el Menú Móvil */
+.menu-toggle {
+    display: none; 
+    position: fixed;
+    top: 20px; left: 20px;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: #2E7D32;
+    color: white;
+    z-index: 1500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border: none;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1400;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
 
 @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+
+/* =========================================
+   3. MEDIA QUERY (SOLO MENÚ Y TABLAS)
+   ¡¡LA COCINA NO SE TOCA AQUÍ!!
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* Layout Vertical solo para las vistas del Nutriólogo */
+    #main-layout {
+        flex-direction: column;
+        overflow-y: auto;
+        height: auto; /* Liberar altura fija */
+        min-height: 100vh;
+    }
+
+    /* MENÚ LATERAL OCULTO */
+    .menu-toggle { display: flex; }
+    
+    .sidebar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 100vh;
+        width: 260px;
+        z-index: 1501;
+        transform: translateX(-100%); /* Escondido a la izquierda */
+        box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+    }
+    .sidebar.active-mobile { transform: translateX(0); }
+    .sidebar-overlay.active-overlay { display: block; opacity: 1; }
+
+    /* AJUSTES CONTENIDO NUTRIÓLOGO */
+    .content-area {
+        padding: 20px;
+        padding-top: 80px; /* Espacio para el botón de menú */
+        overflow: visible;
+    }
+
+    .header-actions { flex-direction: column; width: 100%; align-items: flex-start; }
+    .search-input, .btn-print, .create-new { width: 100% !important; }
+    
+    /* KPIs Stack */
+    .kpi-container { flex-direction: column; }
+    
+    /* Perfil Stack */
+    .profile-details { grid-template-columns: 1fr; }
+    .profile-header { flex-direction: column; text-align: center; }
+
+    /* --- TABLAS (ESTILO TARJETAS) --- */
+    table, thead, tbody, th, td, tr { display: block; }
+    thead tr { position: absolute; top: -9999px; left: -9999px; }
+    
+    tr { 
+        margin-bottom: 20px; 
+        border: 1px solid #e2e8f0; 
+        border-radius: 12px; 
+        background: #fff; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        padding: 15px; 
+    }
+    
+    td { 
+        border: none; 
+        border-bottom: 1px solid #f1f5f9; 
+        position: relative; 
+        padding: 10px 0 10px 40%; 
+        text-align: right; 
+        min-height: 24px; 
+        display: flex; 
+        justify-content: flex-end; 
+        align-items: center; 
+    }
+    
+    td::before { 
+        content: attr(data-label); 
+        position: absolute; 
+        left: 0; 
+        width: 35%; 
+        white-space: nowrap; 
+        font-weight: 700; 
+        color: #1e293b; 
+        text-transform: uppercase; 
+        font-size: 0.75rem; 
+        text-align: left; 
+    }
+    
+    td:last-child { border-bottom: 0; }
+    .row-actions { justify-content: flex-end; width: 100%; }
+}
