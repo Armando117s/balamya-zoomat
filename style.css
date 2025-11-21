@@ -42,9 +42,22 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 .create-new { background: #2E7D32 !important; color: white !important; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
 .create-new:hover { background: #15803d !important; }
 
-/* KPIs */
+/* KPIs (MODIFICADO PARA ICONOS) */
 .kpi-container { display: flex; gap: 20px; margin-bottom: 30px; }
 .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); flex: 1; }
+
+/* Ajuste Flexbox para KPI */
+.card.kpi {
+    display: flex;
+    justify-content: space-between; /* Texto izq, Icono der */
+    align-items: center;
+}
+/* Estilo del Icono */
+.kpi-icon {
+    font-size: 2.5rem;
+    opacity: 0.8; 
+}
+
 .number { font-size: 2.5rem; font-weight: bold; color: #1e293b; margin-top: 10px; }
 .warning { color: #f59e0b; }
 .success { color: #16a34a; }
@@ -54,10 +67,19 @@ header { display: flex; justify-content: space-between; align-items: center; mar
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: 18px 25px; text-align: left; border-bottom: 1px solid #f1f5f9; }
 th { background: #f8fafc; color: #64748b; text-transform: uppercase; font-size: 0.85rem; }
+
+/* --- ETIQUETAS DE ESTADO (COLORES ACTUALIZADOS) --- */
 .tag { padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
+
+/* Verde suave (sin cambios) */
 .tag.success { background: #dcfce7; color: #166534; }
-.tag.warning { background: #fef3c7; color: #92400e; }
-.tag.pending { background: #e2e8f0; color: #475569; }
+
+/* "Sin Stock" -> Rojo con letras blancas */
+.tag.warning { background: #ef4444; color: white; }
+
+/* "Pendiente" -> Amarillo/Naranja con letras blancas */
+.tag.pending { background: #f59e0b; color: white; }
+
 
 /* Status Row */
 .status-row { display: flex; gap: 10px; align-items: center; }
@@ -91,16 +113,27 @@ hr { border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0; }
 .actions { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
 .btn-large { width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; color: white; margin: 0; }
 
-/* --- COLORES DE BOTONES DE COCINA --- */
+/* Colores Cocina */
 .btn-large.success { background: #2E7D32; }
-.btn-large.prep { background: #3b82f6; }
-
-/* CAMBIO: SIN STOCK AHORA ES NARANJA */
-.btn-large.danger { background: #f97316; } 
+.btn-large.danger { background: #f97316; } /* Sin Stock: Naranja */
 .btn-large.danger:hover { background: #ea580c; }
-
+.btn-large.prep { background: #3b82f6; }
 .btn-large.undo { background: #ef4444; color: white; border: none; }
 .btn-large.undo:hover { background: #dc2626; }
+
+/* NUEVA CLASE: AVISO DE "LISTO" */
+.btn-large.confirmed-notice {
+    background: #15803d !important;
+    color: white !important;
+    cursor: default;
+    box-shadow: none;
+    opacity: 1 !important;
+    pointer-events: none;
+    text-align: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
 
 .btn-back { padding: 10px 20px; background: #334155; color: white; border: none; border-radius: 6px; cursor: pointer; margin: 0; }
 
@@ -113,16 +146,17 @@ hr { border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0; }
 textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 0; font-family: inherit; }
 .modal-actions { display: flex; gap: 15px; justify-content: flex-end; margin-top: 20px; }
 
+/* === COLORES MODAL CORREGIDOS === */
+/* Cancelar: Rojo */
+.btn-cancel { background: #ef4444; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
+/* Enviar: Verde */
+.btn-send { background: #2E7D32; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
+
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
 /* =========================================
-   2. MODIFICACIONES Y NUEVOS ESTILOS (RESPONSIVE)
+   RESPONSIVE (Solo Menú y Tablas)
    ========================================= */
-
-/* Colores del Modal Corregidos */
-.btn-cancel { background: #ef4444; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
-.btn-send { background: #3b82f6; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin: 0; }
-
-/* Elementos nuevos para el Menú Móvil */
 .menu-toggle {
     display: none; 
     position: fixed;
@@ -140,104 +174,26 @@ textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid
     cursor: pointer;
 }
 
-.sidebar-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1400;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
+.sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1400; opacity: 0; transition: opacity 0.3s; }
 
-@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-
-/* =========================================
-   3. MEDIA QUERY (SOLO MENÚ Y TABLAS)
-   ¡¡LA COCINA NO SE TOCA AQUÍ!!
-   ========================================= */
 @media (max-width: 768px) {
-    
-    /* Layout Vertical solo para las vistas del Nutriólogo */
-    #main-layout {
-        flex-direction: column;
-        overflow-y: auto;
-        height: auto; /* Liberar altura fija */
-        min-height: 100vh;
-    }
-
-    /* MENÚ LATERAL OCULTO */
+    #main-layout { flex-direction: column; overflow-y: auto; height: auto; min-height: 100vh; }
     .menu-toggle { display: flex; }
-    
-    .sidebar {
-        position: fixed;
-        top: 0; left: 0;
-        height: 100vh;
-        width: 260px;
-        z-index: 1501;
-        transform: translateX(-100%); /* Escondido a la izquierda */
-        box-shadow: 4px 0 15px rgba(0,0,0,0.2);
-    }
+    .sidebar { position: fixed; top: 0; left: 0; height: 100vh; width: 260px; z-index: 1501; transform: translateX(-100%); box-shadow: 4px 0 15px rgba(0,0,0,0.2); }
     .sidebar.active-mobile { transform: translateX(0); }
     .sidebar-overlay.active-overlay { display: block; opacity: 1; }
-
-    /* AJUSTES CONTENIDO NUTRIÓLOGO */
-    .content-area {
-        padding: 20px;
-        padding-top: 80px; /* Espacio para el botón de menú */
-        overflow: visible;
-    }
-
+    .content-area { padding: 20px; padding-top: 80px; overflow: visible; }
     .header-actions { flex-direction: column; width: 100%; align-items: flex-start; }
     .search-input, .btn-print, .create-new { width: 100% !important; }
-    
-    /* KPIs Stack */
     .kpi-container { flex-direction: column; }
-    
-    /* Perfil Stack */
     .profile-details { grid-template-columns: 1fr; }
     .profile-header { flex-direction: column; text-align: center; }
 
-    /* --- TABLAS (ESTILO TARJETAS) --- */
     table, thead, tbody, th, td, tr { display: block; }
     thead tr { position: absolute; top: -9999px; left: -9999px; }
-    
-    tr { 
-        margin-bottom: 20px; 
-        border: 1px solid #e2e8f0; 
-        border-radius: 12px; 
-        background: #fff; 
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-        padding: 15px; 
-    }
-    
-    td { 
-        border: none; 
-        border-bottom: 1px solid #f1f5f9; 
-        position: relative; 
-        padding: 10px 0 10px 40%; 
-        text-align: right; 
-        min-height: 24px; 
-        display: flex; 
-        justify-content: flex-end; 
-        align-items: center; 
-    }
-    
-    td::before { 
-        content: attr(data-label); 
-        position: absolute; 
-        left: 0; 
-        width: 35%; 
-        white-space: nowrap; 
-        font-weight: 700; 
-        color: #1e293b; 
-        text-transform: uppercase; 
-        font-size: 0.75rem; 
-        text-align: left; 
-    }
-    
+    tr { margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 15px; }
+    td { border: none; border-bottom: 1px solid #f1f5f9; position: relative; padding: 10px 0 10px 40%; text-align: right; min-height: 24px; display: flex; justify-content: flex-end; align-items: center; }
+    td::before { content: attr(data-label); position: absolute; left: 0; width: 35%; white-space: nowrap; font-weight: 700; color: #1e293b; text-transform: uppercase; font-size: 0.75rem; text-align: left; }
     td:last-child { border-bottom: 0; }
     .row-actions { justify-content: flex-end; width: 100%; }
 }

@@ -60,16 +60,25 @@
                 
                 <div class="kpi-container">
                     <div class="card kpi">
-                        <h3>Total Ejemplares</h3>
-                        <div class="number">124</div>
+                        <div>
+                            <h3>Total Ejemplares</h3>
+                            <div class="number">124</div>
+                        </div>
+                        <div class="kpi-icon">🐾</div>
                     </div>
                     <div class="card kpi">
-                        <h3>Alertas Stock</h3>
-                        <div class="number warning">2</div>
+                        <div>
+                            <h3>Alertas Stock</h3>
+                            <div class="number warning">1</div>
+                        </div>
+                        <div class="kpi-icon">📉</div>
                     </div>
                     <div class="card kpi">
-                        <h3>Confirmadas</h3>
-                        <div class="number success">42</div>
+                        <div>
+                            <h3>Confirmadas</h3>
+                            <div class="number success">42</div>
+                        </div>
+                        <div class="kpi-icon">✅</div>
                     </div>
                 </div>
 
@@ -308,7 +317,7 @@
     <section id="kitchen-view" class="view hidden kitchen-mode">
         <header class="kitchen-header">
             <h2>👨‍🍳 Módulo de Cocina</h2>
-            <button onclick="backToDashboard()" class="btn-back">Volver a la vista del Nutriologo</button>
+            <button onclick="backToDashboard()" class="btn-back">Volver</button>
         </header>
         
         <div class="cards-grid">
@@ -325,7 +334,7 @@
                 <div class="actions">
                     <button class="btn-large prep" onclick="marcarPreparacion(this)">Marcar en Preparación</button>
                     <button class="btn-large success" onclick="confirmarPedido(this)">Confirmar</button>
-                    <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">↩ Cancelar y corregir</button>
+                    <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">Cancelar</button>
                     <button class="btn-large danger" onclick="abrirModalStock('León Africano', ['Carne de Res', 'Pollo Entero'])">Sin Stock</button>
                 </div>
             </div>
@@ -343,7 +352,7 @@
                 <div class="actions">
                     <button class="btn-large prep" onclick="marcarPreparacion(this)">Marcar en Preparación</button>
                     <button class="btn-large success" onclick="confirmarPedido(this)">Confirmar</button>
-                    <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">↩ Cancelar y corregir</button>
+                    <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">Cancelar</button>
                     <button class="btn-large danger" onclick="abrirModalStock('Jaguar', ['Pollo', 'Suplemento Calcio'])">Sin Stock</button>
                 </div>
             </div>
@@ -361,7 +370,7 @@
                 <div class="actions">
                     <button class="btn-large prep" onclick="marcarPreparacion(this)">Marcar en Preparación</button>
                     <button class="btn-large success" onclick="confirmarPedido(this)">Confirmar</button>
-                    <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">↩ Cancelar y corregir</button>
+                    <button class="btn-large undo hidden" onclick="deshacerConfirmacion(this)">Cancelar</button>
                     <button class="btn-large danger" onclick="abrirModalStock('Tapir', ['Manzanas', 'Zanahorias'])">Sin Stock</button>
                 </div>
             </div>

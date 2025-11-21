@@ -67,26 +67,35 @@ function marcarPreparacion(btn) {
     btn.style.color = "#1e3a8a";
 }
 
+/* --- LÓGICA MODIFICADA: CONVERTIR A AVISO --- */
 function confirmarPedido(btnConfirmar) {
-    btnConfirmar.innerText = "¡Listo!";
-    btnConfirmar.style.background = "#15803d"; 
-    btnConfirmar.style.color = "#ffffff";
+    btnConfirmar.innerText = "✅ ¡Listo!";
+    // Cambiamos la clase para que se vea como un aviso estático
+    btnConfirmar.className = "btn-large confirmed-notice"; 
+    
     btnConfirmar.disabled = true;
+
     const contenedorAcciones = btnConfirmar.parentElement;
     const btnPrep = contenedorAcciones.querySelector('.prep');
     const btnUndo = contenedorAcciones.querySelector('.undo');
+
     if (btnPrep) btnPrep.style.display = "none";
     if (btnUndo) btnUndo.classList.remove('hidden');
 }
 
 function deshacerConfirmacion(btnUndo) {
     const contenedorAcciones = btnUndo.parentElement;
-    const btnConfirm = contenedorAcciones.querySelector('.success');
+    // Buscamos el elemento que ahora tiene la clase de aviso
+    const btnConfirm = contenedorAcciones.querySelector('.confirmed-notice');
     const btnPrep = contenedorAcciones.querySelector('.prep');
-    btnConfirm.innerText = "Confirmar";
-    btnConfirm.style.background = "#2E7D32";
-    btnConfirm.style.color = "white";
-    btnConfirm.disabled = false;
+
+    if (btnConfirm) {
+        btnConfirm.innerText = "Confirmar";
+        // Restauramos la clase original de botón
+        btnConfirm.className = "btn-large success"; 
+        btnConfirm.disabled = false;
+    }
+
     if (btnPrep) {
         btnPrep.style.display = "block";
         btnPrep.innerText = "Marcar en Preparación";
@@ -96,6 +105,7 @@ function deshacerConfirmacion(btnUndo) {
     btnUndo.classList.add('hidden');
 }
 
+/* --- MODAL --- */
 function abrirModalStock(animalNombre, listaIngredientes) {
     document.getElementById('modal-animal-name').innerText = animalNombre;
     const select = document.getElementById('modal-ingredient-select');
@@ -126,6 +136,7 @@ function enviarReporte() {
         alert("Reporte enviado a Nutrición con éxito.");
         cerrarModal();
         btn.innerText = originalText;
-        btn.style.background = "#ef4444";
+        // Restaurar color verde
+        btn.style.background = "#2E7D32"; 
     }, 1000);
 }
