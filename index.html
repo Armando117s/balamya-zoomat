@@ -132,7 +132,7 @@
                     <h3>Gestión de Ejemplares</h3>
                     <div class="header-actions">
                         <input type="text" class="search-input" placeholder="🔍 Buscar ejemplar...">
-                        <button class="btn-action create-new">+ Nuevo</button>
+                        <button class="btn-action create-new" onclick="abrirModalNuevoAnimal()">+ Nuevo</button>
                     </div>
                 </header>
                 
@@ -404,6 +404,52 @@
                 <button class="btn-cancel" onclick="cerrarModal()">Cancelar</button>
                 <button class="btn-send" onclick="enviarReporte()">Enviar Reporte</button>
             </div>
+        </div>
+    </div>
+
+    <div id="modal-new-animal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📝 Registrar Nuevo Ejemplar</h3>
+            </div>
+            
+            <form id="form-nuevo-animal" onsubmit="event.preventDefault(); guardarAnimal();">
+                <div class="form-group">
+                    <label>Nombre o Identificador (ID)</label>
+                    <input type="text" id="new-animal-name" class="full-width-input" placeholder="Ej. Simba / #Z005" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Especie</label>
+                    <select id="new-animal-species" class="full-width-input" required>
+                        <option value="" disabled selected>Selecciona especie...</option>
+                        <option value="Jaguar">Jaguar</option>
+                        <option value="Leon">León Africano</option>
+                        <option value="Tapir">Tapir</option>
+                        <option value="Guacamaya">Guacamaya Roja</option>
+                        <option value="Cocodrilo">Cocodrilo</option>
+                        <option value="Otro">Otro...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Recinto Asignado</label>
+                    <input type="text" id="new-animal-enclosure" class="full-width-input" placeholder="Ej. Felinos Norte">
+                </div>
+
+                <div class="form-group">
+                    <label>Ingredientes de la Dieta (Porción Diaria)</label>
+                    <textarea id="new-animal-diet" class="full-width-input" rows="4" placeholder="Ej:
+- 2kg Carne de Res
+- 1 Pollo entero
+- Suplemento de Calcio" required></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="cerrarModalNuevoAnimal()">Cancelar</button>
+                    <button type="submit" class="btn-send">💾 Guardar Ficha</button>
+                </div>
+            </form>
         </div>
     </div>
 

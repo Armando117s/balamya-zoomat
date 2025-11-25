@@ -105,7 +105,7 @@ function deshacerConfirmacion(btnUndo) {
     btnUndo.classList.add('hidden');
 }
 
-/* --- MODAL --- */
+/* --- MODAL STOCK (EXISTENTE) --- */
 function abrirModalStock(animalNombre, listaIngredientes) {
     document.getElementById('modal-animal-name').innerText = animalNombre;
     const select = document.getElementById('modal-ingredient-select');
@@ -128,7 +128,8 @@ function cerrarModal() {
 }
 
 function enviarReporte() {
-    const btn = document.querySelector('.btn-send');
+    // Nota: Usamos querySelector específico para evitar conflicto con el otro modal
+    const btn = document.querySelector('#modal-stock .btn-send');
     const originalText = btn.innerText;
     btn.innerText = "Enviando...";
     btn.style.background = "#999";
@@ -139,4 +140,37 @@ function enviarReporte() {
         // Restaurar color verde
         btn.style.background = "#2E7D32"; 
     }, 1000);
+}
+
+/* --- LÓGICA NUEVO ANIMAL (NUEVO) --- */
+
+function abrirModalNuevoAnimal() {
+    document.getElementById('modal-new-animal').classList.remove('hidden');
+}
+
+function cerrarModalNuevoAnimal() {
+    document.getElementById('modal-new-animal').classList.add('hidden');
+    // Limpiamos el formulario al cerrar para que esté vacío la próxima vez
+    document.getElementById('form-nuevo-animal').reset();
+}
+
+function guardarAnimal() {
+    // 1. Capturar los datos del formulario
+    const nombre = document.getElementById('new-animal-name').value;
+    const especie = document.getElementById('new-animal-species').value;
+    const recinto = document.getElementById('new-animal-enclosure').value;
+
+    // 2. Simular guardado (Aquí conectarías con tu Backend/Base de Datos)
+    const btn = document.querySelector('#modal-new-animal .btn-send');
+    const originalText = btn.innerText;
+    
+    btn.innerText = "Guardando...";
+    
+    setTimeout(() => {
+        alert(`✅ ¡Ficha Creada Exitosamente!\n\nEspecie: ${especie}\nNombre/ID: ${nombre}\nUbicación: ${recinto}`);
+        
+        // 3. Cerrar modal y restaurar botónes
+        cerrarModalNuevoAnimal();
+        btn.innerText = originalText;
+    }, 800);
 }
